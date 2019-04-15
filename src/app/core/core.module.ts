@@ -34,5 +34,6 @@ export class CoreModule {
     if (parent) {
       throw new Error('Module has existed, can not load it here again!');
     }
+    loadSvgResources(ir, ds);
   }
 }
