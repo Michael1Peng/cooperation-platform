@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
+  MatAutocompleteModule,
   MatButtonModule,
   MatCardModule, MatGridListModule,
   MatIconModule,
@@ -22,7 +23,8 @@ import {
     MatInputModule,
     MatListModule,
     MatSlideToggleModule,
-    MatGridListModule
+    MatGridListModule,
+    MatAutocompleteModule
   ],
   exports: [
     CommonModule,
@@ -33,7 +35,8 @@ import {
     MatInputModule,
     MatListModule,
     MatSlideToggleModule,
-    MatGridListModule
+    MatGridListModule,
+    MatAutocompleteModule
   ]
 })
 export class SharedModule {

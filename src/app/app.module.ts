@@ -6,6 +6,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {CoreModule} from './core/core.module';
 import {AppComponent} from './app.component';
 import {LoginModule} from './login/login.module';
+import {ProjectModule} from './project/project.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {LoginModule} from './login/login.module';
     LoginModule,
     MatSidenavModule,
     BrowserAnimationsModule,
-    CoreModule
+    CoreModule,
+    ProjectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

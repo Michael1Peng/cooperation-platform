@@ -41,6 +41,9 @@ yarn-error.log
 testem.log
 /typings
 
+#ignore some files in MacOS
+._*
+
 # System Files
 .DS_Store
 Thumbs.db
