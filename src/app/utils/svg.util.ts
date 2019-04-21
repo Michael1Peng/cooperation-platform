@@ -6,6 +6,7 @@ export const loadSvgResources = (ir: MatIconRegistry, ds: DomSanitizer) => {
   const sidebarDir = `${imgDir}/sidebar`;
   const daysDir = `${imgDir}/days`;
   const avatarDir = `${imgDir}/avatar`;
+  const iconsDir = `${imgDir}/icons`;
   ir.addSvgIcon('day', ds.bypassSecurityTrustResourceUrl(`${sidebarDir}/day.svg`));
   ir.addSvgIcon('week', ds.bypassSecurityTrustResourceUrl(`${sidebarDir}/week.svg`));
   ir.addSvgIcon('month', ds.bypassSecurityTrustResourceUrl(`${sidebarDir}/month.svg`));
@@ -17,4 +18,6 @@ export const loadSvgResources = (ir: MatIconRegistry, ds: DomSanitizer) => {
     days.push(i);
   }
   days.forEach(d => ir.addSvgIcon(`day${d}`, ds.bypassSecurityTrustResourceUrl(`${daysDir}/day${d}.svg`)));
+  const icons = ['add', 'burger-navigation', 'delete', 'hand-grab-o', 'move'];
+  icons.forEach(i => ir.addSvgIcon(`${i}`, ds.bypassSecurityTrustResourceUrl(`${iconsDir}/${i}.svg`)));
 };

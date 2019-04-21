@@ -4,7 +4,8 @@ import {AppComponent} from './app.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
-  {path: 'project', redirectTo: '/project', pathMatch: 'full'}
+  {path: 'project', redirectTo: '/project', pathMatch: 'full'},
+  {path: 'tasklist', redirectTo: '/tasklist', pathMatch: 'full'}
 ];
 
 @NgModule({
