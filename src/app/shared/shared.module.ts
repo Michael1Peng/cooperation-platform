@@ -8,7 +8,10 @@ import {
   MatInputModule,
   MatListModule,
   MatSlideToggleModule,
-  MatToolbarModule, MatTooltipModule
+  MatToolbarModule, MatTooltipModule,
+  MatRadioModule,
+  MatDatepickerModule, MatDialogModule,
+  MatNativeDateModule
 } from '@angular/material';
 
 
@@ -26,7 +29,11 @@ import {
     MatGridListModule,
     MatAutocompleteModule,
     MatCheckboxModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatNativeDateModule
   ],
   exports: [
     CommonModule,
@@ -40,7 +47,11 @@ import {
     MatGridListModule,
     MatAutocompleteModule,
     MatCheckboxModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatNativeDateModule
   ]
 })
 export class SharedModule {
