@@ -14,21 +14,27 @@ export class TaskHomeComponent implements OnInit {
       tasks: [
         {
           desc: '任务一: 去星巴克买杯咖啡',
+          completed: true,
           owner: {
             id: 1,
             name: '张三',
             avatar: 'avatars:svg-11'
           },
-          dueDate: new Date()
+          priority: 3,
+          dueDate: new Date(),
+          reminder: true,
         },
         {
           desc: '任务二: 完成老师布置的PPT作业',
+          completed: false,
           owner: {
             id: 2,
             name: '李四',
             avatar: 'avatars:svg-12'
           },
-          dueDate: new Date()
+          priority: 2,
+          dueDate: new Date(),
+          reminder: false
         }
       ]
     },
@@ -38,21 +44,27 @@ export class TaskHomeComponent implements OnInit {
       tasks: [
         {
           desc: '任务三: 项目代码评审',
+          completed: false,
           owner: {
             id: 1,
             name: '王五',
             avatar: 'avatars:svg-13'
           },
-          dueDate: new Date()
+          priority: 2,
+          dueDate: new Date(),
+          reminder: false
         },
         {
           desc: '任务四: 制定项目计划',
+          completed: false,
           owner: {
             id: 2,
             name: '李四',
             avatar: 'avatars:svg-12'
           },
-          dueDate: new Date()
+          priority: 1,
+          dueDate: new Date(),
+          reminder: false
         }
       ]
     }
