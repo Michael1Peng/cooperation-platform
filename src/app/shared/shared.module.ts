@@ -11,7 +11,7 @@ import {
   MatToolbarModule, MatTooltipModule,
   MatRadioModule,
   MatDatepickerModule, MatDialogModule,
-  MatNativeDateModule
+  MatNativeDateModule, MatSelectModule
 } from '@angular/material';
 
 
@@ -33,7 +33,8 @@ import {
     MatRadioModule,
     MatDatepickerModule,
     MatDialogModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule
   ],
   exports: [
     CommonModule,
@@ -51,7 +52,8 @@ import {
     MatRadioModule,
     MatDatepickerModule,
     MatDialogModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule
   ]
 })
 export class SharedModule {

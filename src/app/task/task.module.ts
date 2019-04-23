@@ -7,16 +7,18 @@ import {TaskHeaderComponent} from './task-header/task-header.component';
 import {MatMenuModule} from '@angular/material';
 import {TaskRoutingModule} from './task-routing.module';
 import {NewTaskComponent} from './new-task/new-task.component';
+import { CopyTaskComponent } from './copy-task/copy-task.component';
 
 @NgModule({
-  declarations: [TaskHomeComponent, TaskListComponent, TaskItemComponent, TaskHeaderComponent, NewTaskComponent],
+  declarations: [TaskHomeComponent, TaskListComponent, TaskItemComponent, TaskHeaderComponent, NewTaskComponent, CopyTaskComponent],
   imports: [
     SharedModule,
     MatMenuModule,
     TaskRoutingModule
   ],
   entryComponents: [
-    NewTaskComponent
+    NewTaskComponent,
+    CopyTaskComponent
   ]
 })
 export class TaskModule {

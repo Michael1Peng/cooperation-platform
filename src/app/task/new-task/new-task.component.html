@@ -1,6 +1,6 @@
 <form>
   <h2 mat-dialog-title>Build a new task</h2>
-  <mat-dialog-content>
+  <div mat-dialog-content>
     <mat-form-field color="accent" class="full-width">
       <input matInput type="text" placeholder="Task Name">
     </mat-form-field>
@@ -19,9 +19,9 @@
       <mat-datepicker-toggle type="button" matSuffix [for]="reminderDatepicker"></mat-datepicker-toggle>
     </mat-form-field>
     <mat-datepicker #reminderDatepicker></mat-datepicker>
-  </mat-dialog-content>
-  <mat-dialog-actions>
+  </div>
+  <div mat-dialog-actions>
     <button mat-raised-button type="button" color="primary">Save</button>
     <button mat-button mat-dialog-close type="button">Close</button>
-  </mat-dialog-actions>
+  </div>
 </form>
