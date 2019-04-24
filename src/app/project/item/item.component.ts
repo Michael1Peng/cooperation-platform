@@ -1,16 +1,20 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {MatDialog} from '@angular/material';
+import {Component, OnInit, Input, Output, EventEmitter, HostBinding, HostListener} from '@angular/core';
+import {cardanimation} from '../animations/card.animations';
 
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
-  styleUrls: ['./item.component.scss']
+  styleUrls: ['./item.component.scss'],
+  animations: [
+    cardanimation
+  ]
 })
 export class ItemComponent implements OnInit {
 
   @Output() inviteEvent = new EventEmitter<void>();
   @Output() editEvent = new EventEmitter<void>();
   @Output() deleteProjectEvent = new EventEmitter<void>();
+  @HostBinding('@card') cardState = 'out';
 
   constructor() {
   }
@@ -18,6 +22,16 @@ export class ItemComponent implements OnInit {
   @Input() item;
 
   ngOnInit() {
+  }
+
+  @HostListener('mouseenter')
+  onMouseEnter() {
+    this.cardState = 'hover';
+  }
+
+  @HostListener('mouseleave')
+  onMouseLeave() {
+    this.cardState = 'out';
   }
 
   onInviteClick() {

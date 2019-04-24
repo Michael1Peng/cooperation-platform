@@ -1,10 +1,12 @@
-<mat-list-item class="container"
+<mat-list-item
+  class="container"
   [ngClass]="{
     'priority-normal': item.priority === 3,
     'priority-important': item.priority === 2,
     'priority-emergency': item.priority === 1
   }"
   (click)="itemClickEvent()"
+  [@item]="leftBorderState"
 >
   <mat-checkbox class="completion-status" [checked]="item.completed" (click)="checkBoxClickEvent($event)"></mat-checkbox>
   <div mat-line class="content" [ngClass]="{'completed': item.completed}">
