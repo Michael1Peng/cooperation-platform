@@ -13,10 +13,11 @@ import {
   MatDatepickerModule, MatDialogModule,
   MatNativeDateModule, MatSelectModule
 } from '@angular/material';
+import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [ConfirmDialogComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -36,6 +37,7 @@ import {
     MatNativeDateModule,
     MatSelectModule
   ],
+  entryComponents: [ConfirmDialogComponent],
   exports: [
     CommonModule,
     MatButtonModule,

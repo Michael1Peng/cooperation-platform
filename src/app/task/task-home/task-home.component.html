@@ -1,13 +1,20 @@
 <div class="task-lists">
   <app-task-list class="list-container" *ngFor="let list of lists">
-    <app-task-header [header]="list.name"
-                     (newTaskEvent)="createNewTask()"
-                     (moveListEvent)="moveList()"
+    <app-task-header
+      [header]="list.name"
+      (newTaskEvent)="createNewTask()"
+      (moveListEvent)="moveList()"
+      (deleteListEvent)="deleteListConfirm(list)"
+      (editListEvent)="editList(list)"
     ></app-task-header>
-    <app-task-item *ngFor="let task of list.tasks" [item]="task"></app-task-item>
+    <app-task-item
+      *ngFor="let task of list.tasks"
+      [item]="task"
+      (itemClick)="editTask(task)"
+    ></app-task-item>
   </app-task-list>
 </div>
 
-<button class="fab-button" mat-fab type="button">
+<button class="fab-button" mat-fab type="button" (click)="createNewList()">
   <mat-icon>add</mat-icon>
 </button>

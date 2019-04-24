@@ -1,4 +1,10 @@
-<app-item *ngFor="let project of projects" [item] = "project" class="card" (inviteEvent)="inviteNewMember()">
+<app-item
+  *ngFor="let project of projects"
+  [item] = "project" class="card"
+  (inviteEvent)="inviteNewMember()"
+  (editEvent)="editProject(project)"
+  (deleteProjectEvent)="deleteProjectConfirm(project)"
+>
 
 </app-item>
 

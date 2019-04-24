@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NewProjectComponent} from '../new-project/new-project.component';
 import {InviteComponent} from '../invite/invite.component';
 import {MatDialog} from '@angular/material';
+import {ConfirmDialogComponent} from '../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-list',
@@ -30,10 +31,26 @@ export class ListComponent implements OnInit {
   }
 
   openNewProject() {
-    this.dialog.open(NewProjectComponent, {data: {dark: true}});
+    this.dialog.open(NewProjectComponent, {data: {title: 'Build a new project'}});
   }
 
   inviteNewMember() {
     this.dialog.open(InviteComponent);
   }
+
+  editProject(project) {
+    this.dialog.open(NewProjectComponent, {data: {title: 'Edit the project', project}});
+  }
+
+  deleteProjectConfirm(project) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Delete the project',
+        content: 'Are you sure to delete the project?'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => console.log(result));
+  }
+
 }

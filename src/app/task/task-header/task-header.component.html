@@ -14,7 +14,7 @@
 </div>
 
 <mat-menu #menu='matMenu'>
-  <button mat-menu-item>
+  <button mat-menu-item (click)="onEditList()">
     <mat-icon>mode_edit</mat-icon>
     <span>Edit the name of the list</span>
   </button>
@@ -22,7 +22,7 @@
     <mat-icon class="material-icon" [svgIcon]="'move'"></mat-icon>
     <span>Move all the content of this list</span>
   </button>
-  <button mat-menu-item>
+  <button mat-menu-item (click)="onDeleteList()">
     <mat-icon>delete_forever</mat-icon>
     <span>Delete this list</span>
   </button>

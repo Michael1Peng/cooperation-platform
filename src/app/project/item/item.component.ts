@@ -9,6 +9,8 @@ import {MatDialog} from '@angular/material';
 export class ItemComponent implements OnInit {
 
   @Output() inviteEvent = new EventEmitter<void>();
+  @Output() editEvent = new EventEmitter<void>();
+  @Output() deleteProjectEvent = new EventEmitter<void>();
 
   constructor() {
   }
@@ -20,5 +22,13 @@ export class ItemComponent implements OnInit {
 
   onInviteClick() {
     this.inviteEvent.emit();
+  }
+
+  onEditClick() {
+    this.editEvent.emit();
+  }
+
+  onDeleteClick() {
+    this.deleteProjectEvent.emit();
   }
 }

@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {NewTaskComponent} from '../new-task/new-task.component';
 import {CopyTaskComponent} from '../copy-task/copy-task.component';
+import {ConfirmDialogComponent} from '../../shared/confirm-dialog/confirm-dialog.component';
+import {NewListComponent} from '../new-list/new-list.component';
 
 @Component({
   selector: 'app-task-home',
@@ -81,11 +83,34 @@ export class TaskHomeComponent implements OnInit {
   }
 
   createNewTask() {
-    this.dialog.open(NewTaskComponent);
+    const dialogRef = this.dialog.open(NewTaskComponent, {data: {title: 'Build a new task'}});
   }
 
   moveList() {
     const dialogRef = this.dialog.open(CopyTaskComponent, {data: {lists: this.lists}});
+  }
+
+  editTask(task) {
+    const dialogRef = this.dialog.open(NewTaskComponent, {data: {title: 'Edit the task', task}});
+  }
+
+  deleteListConfirm(list) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Delete the list',
+        content: 'Are you sure to delete the list?'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => console.log(result));
+  }
+
+  editList(list) {
+    const dialogRef = this.dialog.open(NewListComponent, {data: {title: 'Edit the list', task: list}});
+  }
+
+  createNewList() {
+    const dialogRef = this.dialog.open(NewListComponent, {data: {title: 'Build a new list'}});
   }
 
 }
