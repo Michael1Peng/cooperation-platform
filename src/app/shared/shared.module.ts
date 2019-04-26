@@ -11,7 +11,8 @@ import {
   MatToolbarModule, MatTooltipModule,
   MatRadioModule,
   MatDatepickerModule, MatDialogModule,
-  MatNativeDateModule, MatSelectModule
+  MatNativeDateModule, MatSelectModule,
+  MatSidenavModule
 } from '@angular/material';
 import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component';
 
@@ -35,7 +36,8 @@ import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component'
     MatDatepickerModule,
     MatDialogModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSidenavModule
   ],
   entryComponents: [ConfirmDialogComponent],
   exports: [
@@ -55,7 +57,8 @@ import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component'
     MatDatepickerModule,
     MatDialogModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSidenavModule
   ]
 })
 export class SharedModule {
