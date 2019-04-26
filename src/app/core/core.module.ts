@@ -2,7 +2,6 @@ import {NgModule, SkipSelf, Optional} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {MatIconRegistry} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AppRoutingModule} from '../app-routing.module';
 import {DomSanitizer} from '@angular/platform-browser';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
@@ -21,14 +20,12 @@ import 'hammerjs';
   exports: [
     HeaderComponent,
     FooterComponent,
-    SidebarComponent,
-    AppRoutingModule
+    SidebarComponent
   ],
   imports: [
     HttpClientModule,
     BrowserAnimationsModule,
-    SharedModule,
-    AppRoutingModule
+    SharedModule
   ]
 })
 export class CoreModule {
