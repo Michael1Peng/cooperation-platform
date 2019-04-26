@@ -7,6 +7,7 @@ import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
 import {SharedModule} from '../shared/shared.module';
+import {AppRoutingModule} from '../app-routing.module';
 import {loadSvgResources} from '../utils/svg.util';
 
 import 'hammerjs';
@@ -20,12 +21,14 @@ import 'hammerjs';
   exports: [
     HeaderComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    AppRoutingModule
   ],
   imports: [
     HttpClientModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    AppRoutingModule
   ]
 })
 export class CoreModule {
