@@ -1,6 +1,6 @@
 <mat-nav-list>
   <h3 matSubheader>Project</h3>
-  <mat-list-item>
+  <mat-list-item [routerLink]="['/project']" (click)="onNavClick()">
     <mat-icon mat-list-icon svgIcon="projects"></mat-icon>
     <span mat-line>Project home page</span>
     <span mat-line matSubheader>Check all your projects</span>
@@ -9,7 +9,7 @@
   <mat-list-item>
     <span>Calendar home page</span>
   </mat-list-item>
-  <mat-list-item>
+  <mat-list-item [routerLink]="['/tasklist']" (click)="onNavClick()">
     <mat-icon mat-list-icon svgIcon="month"></mat-icon>
     <span mat-line>Month view</span>
     <span mat-line matSubheader>View projects in monthly view</span>
