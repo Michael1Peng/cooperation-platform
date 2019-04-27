@@ -20,6 +20,7 @@ export class TaskHomeComponent implements OnInit {
     {
       id: 1,
       name: '待办',
+      order: 1,
       tasks: [
         {
           desc: '任务一: 去星巴克买杯咖啡',
@@ -50,6 +51,7 @@ export class TaskHomeComponent implements OnInit {
     {
       id: 2,
       name: '进行中',
+      order: 2,
       tasks: [
         {
           desc: '任务三: 项目代码评审',
@@ -126,6 +128,10 @@ export class TaskHomeComponent implements OnInit {
 
       case 'task-list':
         console.log('handling list');
+        const tempOrder = list.order;
+        const srcList = srcData.data;
+        list.order = srcList.order;
+        srcList.order = tempOrder;
         break;
     }
   }

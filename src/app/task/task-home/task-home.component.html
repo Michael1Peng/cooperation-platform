@@ -6,6 +6,7 @@
     [dragEnterClass]="'drag-enter'"
     [appDraggable]="true"
     [dragData]="list"
+    [ngStyle]="{'order': list.order}"
     [dragTag]="'task-list'"
     [draggedClass]="'drag-start'"
     (droppedEvent)="handleMove($event, list)"
