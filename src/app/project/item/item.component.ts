@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter, HostBinding, HostListener} from '@angular/core';
-import {cardanimation} from '../animations/card.animations';
+import {cardanimation} from '../../animations/card.animations';
 
 @Component({
   selector: 'app-item',

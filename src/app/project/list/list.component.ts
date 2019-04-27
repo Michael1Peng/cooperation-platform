@@ -1,15 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, HostBinding} from '@angular/core';
 import {NewProjectComponent} from '../new-project/new-project.component';
 import {InviteComponent} from '../invite/invite.component';
 import {MatDialog} from '@angular/material';
 import {ConfirmDialogComponent} from '../../shared/confirm-dialog/confirm-dialog.component';
+import {routeanimation} from '../../animations/route.animations';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  styleUrls: ['./list.component.scss'],
+  animations: [
+    routeanimation
+  ]
 })
 export class ListComponent implements OnInit {
+
+  @HostBinding('@route') state;
 
   constructor(private dialog: MatDialog) {
   }
