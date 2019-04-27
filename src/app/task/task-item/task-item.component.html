@@ -7,6 +7,10 @@
   }"
   (click)="itemClickEvent()"
   [@item]="leftBorderState"
+  [appDraggable]="true"
+  [dragData]="item"
+  [dragTag]="'task-item'"
+  [draggedClass]="'drag-start'"
 >
   <mat-checkbox class="completion-status" [checked]="item.completed" (click)="checkBoxClickEvent($event)"></mat-checkbox>
   <div mat-line class="content" [ngClass]="{'completed': item.completed}">

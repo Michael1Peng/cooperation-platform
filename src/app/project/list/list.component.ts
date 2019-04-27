@@ -4,13 +4,15 @@ import {InviteComponent} from '../invite/invite.component';
 import {MatDialog} from '@angular/material';
 import {ConfirmDialogComponent} from '../../shared/confirm-dialog/confirm-dialog.component';
 import {routeanimation} from '../../animations/route.animations';
+import {projectListAnimation} from '../../animations/projectList.animations';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
   animations: [
-    routeanimation
+    routeanimation,
+    projectListAnimation
   ]
 })
 export class ListComponent implements OnInit {
@@ -29,7 +31,7 @@ export class ListComponent implements OnInit {
     {
       name: '自动化测试项目',
       desc: '这是一个企业内部项目',
-      coverIng: 'assets/img/covers/1.jpg'
+      coverImg: 'assets/img/covers/1.jpg'
     }
   ];
 

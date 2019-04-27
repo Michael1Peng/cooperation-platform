@@ -22,7 +22,9 @@ export class ItemComponent implements OnInit {
   @Input() item;
 
   ngOnInit() {
+    console.log(this.item);
   }
+
 
   @HostListener('mouseenter')
   onMouseEnter() {

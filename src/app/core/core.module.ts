@@ -28,7 +28,7 @@ import 'hammerjs';
     HttpClientModule,
     BrowserAnimationsModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
   ]
 })
 export class CoreModule {
