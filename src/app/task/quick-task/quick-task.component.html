@@ -1,0 +1,9 @@
+<form #f='ngForm'>
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="Build a quick task here" [(ngModel)]="desc" name="desc">
+    <button matSuffix type="button" (click)="onQuickTaskClick()">
+      <mat-icon>send</mat-icon>
+    </button>
+    <mat-error>not empty</mat-error>
+  </mat-form-field>
+</form>

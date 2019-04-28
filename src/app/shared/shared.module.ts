@@ -14,6 +14,7 @@ import {
   MatNativeDateModule, MatSelectModule,
   MatSidenavModule
 } from '@angular/material';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component';
 import {DirectiveModule} from '../directive/directive.module';
 
@@ -39,7 +40,9 @@ import {DirectiveModule} from '../directive/directive.module';
     MatNativeDateModule,
     MatSelectModule,
     MatSidenavModule,
-    DirectiveModule
+    DirectiveModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   entryComponents: [ConfirmDialogComponent],
   exports: [
@@ -61,7 +64,9 @@ import {DirectiveModule} from '../directive/directive.module';
     MatNativeDateModule,
     MatSelectModule,
     MatSidenavModule,
-    DirectiveModule
+    DirectiveModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule {

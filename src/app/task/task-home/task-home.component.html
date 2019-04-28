@@ -19,6 +19,7 @@
       (deleteListEvent)="deleteListConfirm(list)"
       (editListEvent)="editList(list)"
     ></app-task-header>
+    <app-quick-task (quickTaskEvent)="buildQuickTask($event)"></app-quick-task>
     <app-task-item
       *ngFor="let task of list.tasks"
       [item]="task"
