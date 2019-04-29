@@ -1,16 +1,16 @@
-<form>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form, $event)">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Login:</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <mat-form-field color="accent" class="full-width">
-        <input matInput type="text" placeholder="Your email">
+        <input matInput type="text" placeholder="Your email" formControlName="email">
       </mat-form-field>
       <mat-form-field color="accent" class="full-width">
-        <input matInput type="password" placeholder="Your password">
+        <input matInput type="password" placeholder="Your password" formControlName="password">
       </mat-form-field>
-      <button mat-raised-button type="button">Login</button>
+      <button mat-raised-button type="submit" [disabled]="!form.valid">Login</button>
     </mat-card-content>
     <mat-card-actions class="text-right">
       <p>Not registerd?<a routerLink="/register">Register</a></p>
