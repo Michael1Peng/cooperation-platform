@@ -1,26 +1,29 @@
-<form>
+<form [formGroup]="form">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Register:</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <mat-form-field color="accent" class="full-width">
-        <input matInput type="text" placeholder="Your email">
+        <input matInput type="text" placeholder="Your email" formControlName="email">
       </mat-form-field>
       <mat-form-field color="accent" class="full-width">
-        <input matInput type="text" placeholder="Your name">
+        <input matInput type="text" placeholder="Your name" formControlName="name">
       </mat-form-field>
       <mat-form-field color="accent" class="full-width">
-        <input matInput type="password" placeholder="Your password">
+        <input matInput type="password" placeholder="Your password" formControlName="password">
       </mat-form-field>
       <mat-form-field color="accent" class="full-width">
-        <input matInput type="password" placeholder="Repeat Your password">
+        <input matInput type="password" placeholder="Repeat Your password" formControlName="repeat">
       </mat-form-field>
-      <mat-grid-list cols="6">
-        <mat-grid-tile *ngFor="let item of items">
-          <mat-icon class="avatar" [svgIcon]="item"></mat-icon>
-        </mat-grid-tile>
-      </mat-grid-list>
+      <app-image-select-list
+        [useSvgIcon]="true"
+        [cols]="6"
+        [title]="'Choose your avatar: '"
+        [items]="items"
+        formControlName="avatar"
+      >
+      </app-image-select-list>
       <button mat-raised-button type="button">Register</button>
     </mat-card-content>
     <mat-card-actions class="text-right">

@@ -17,10 +17,11 @@ import {
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component';
 import {DirectiveModule} from '../directive/directive.module';
+import {ImageSelectListComponent} from './image-select-list/image-select-list.component';
 
 
 @NgModule({
-  declarations: [ConfirmDialogComponent],
+  declarations: [ConfirmDialogComponent, ImageSelectListComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -66,7 +67,8 @@ import {DirectiveModule} from '../directive/directive.module';
     MatSidenavModule,
     DirectiveModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ImageSelectListComponent
   ]
 })
 export class SharedModule {
