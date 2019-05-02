@@ -29,6 +29,13 @@ import 'hammerjs';
     BrowserAnimationsModule,
     SharedModule,
     AppRoutingModule,
+  ],
+  providers: [
+    {
+      provide: 'RESOURCE', useValue: {
+        url: 'http://localhost:3000/'
+      }
+    }
   ]
 })
 export class CoreModule {

@@ -22,9 +22,9 @@
     <mat-card-subtitle>
       --April 14
     </mat-card-subtitle>
-    <img mat-card-image src="/assets/priscilla-du-preez-234138-unsplash.jpg">
+    <img mat-card-image [src]="quote.pic">
     <mat-card-content>
-      Yesterday is history, <br>tomorrow is a mystery,<br>but today is a gift.
+      {{quote.cn}}
     </mat-card-content>
   </mat-card>
 </form>
