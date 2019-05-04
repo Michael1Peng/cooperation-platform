@@ -12,16 +12,18 @@ import {
   MatRadioModule,
   MatDatepickerModule, MatDialogModule,
   MatNativeDateModule, MatSelectModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatButtonToggleModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component';
 import {DirectiveModule} from '../directive/directive.module';
 import {ImageSelectListComponent} from './image-select-list/image-select-list.component';
+import { AgeInputComponent } from './age-input/age-input.component';
 
 
 @NgModule({
-  declarations: [ConfirmDialogComponent, ImageSelectListComponent],
+  declarations: [ConfirmDialogComponent, ImageSelectListComponent, AgeInputComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -43,7 +45,8 @@ import {ImageSelectListComponent} from './image-select-list/image-select-list.co
     MatSidenavModule,
     DirectiveModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonToggleModule
   ],
   entryComponents: [ConfirmDialogComponent],
   exports: [
@@ -68,7 +71,8 @@ import {ImageSelectListComponent} from './image-select-list/image-select-list.co
     DirectiveModule,
     FormsModule,
     ReactiveFormsModule,
-    ImageSelectListComponent
+    ImageSelectListComponent,
+    MatButtonToggleModule
   ]
 })
 export class SharedModule {
