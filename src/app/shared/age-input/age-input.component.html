@@ -7,15 +7,15 @@
     </mat-form-field>
     <mat-datepicker touchUi="true" #birthdayPicker></mat-datepicker>
   </div>
-  <ng-container formControlName="age">
-    <div>
+  <ng-container formGroupName="age">
+    <div class="age-num">
       <mat-form-field>
-        <input type="number" placeholder="age" matSuffix formControlName="ageNumber">
+        <input type="number" placeholder="age" matInput formControlName="ageNumber">
       </mat-form-field>
     </div>
     <div>
-      <mat-button-toggle-group formControlName="ageUnit">
-        <mat-button-toggle *ngFor="let unit of ageUnits" [value]="unit.value">
+      <mat-button-toggle-group formControlName="ageUnit" [(ngModel)]="selectedUnit">
+        <mat-button-toggle *ngFor="let unit of ageUnits" [value]="unit?.value">
           {{unit.label}}
         </mat-button-toggle>
       </mat-button-toggle-group>

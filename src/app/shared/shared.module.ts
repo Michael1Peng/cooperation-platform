@@ -46,7 +46,7 @@ import { AgeInputComponent } from './age-input/age-input.component';
     DirectiveModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
   ],
   entryComponents: [ConfirmDialogComponent],
   exports: [
@@ -72,7 +72,8 @@ import { AgeInputComponent } from './age-input/age-input.component';
     FormsModule,
     ReactiveFormsModule,
     ImageSelectListComponent,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    AgeInputComponent
   ]
 })
 export class SharedModule {
