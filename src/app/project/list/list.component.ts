@@ -5,6 +5,7 @@ import {MatDialog} from '@angular/material';
 import {ConfirmDialogComponent} from '../../shared/confirm-dialog/confirm-dialog.component';
 import {routeanimation} from '../../animations/route.animations';
 import {projectListAnimation} from '../../animations/projectList.animations';
+import {ProjectService} from '../../service/project.service';
 
 @Component({
   selector: 'app-list',
@@ -19,23 +20,15 @@ export class ListComponent implements OnInit {
 
   @HostBinding('@route') state;
 
-  constructor(private dialog: MatDialog) {
+  constructor(
+    private dialog: MatDialog,
+    private projectService$: ProjectService) {
   }
 
-  projects = [
-    {
-      name: '企业协作平台',
-      desc: '这是一个企业内部项目',
-      coverImg: 'assets/img/covers/0.jpg'
-    },
-    {
-      name: '自动化测试项目',
-      desc: '这是一个企业内部项目',
-      coverImg: 'assets/img/covers/1.jpg'
-    }
-  ];
+  projects;
 
   ngOnInit() {
+    this.projectService$.get('1').subscribe(projects => this.projects = projects);
   }
 
   openNewProject() {

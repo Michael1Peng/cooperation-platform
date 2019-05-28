@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms';
 import {QuoteService} from '../../service/quote.service';
-import {Quote} from '../../domain/quote.model';
+import {Quote} from '../../domain';
 
 @Component({
   selector: 'app-login',
