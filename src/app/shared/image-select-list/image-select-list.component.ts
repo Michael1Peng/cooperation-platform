@@ -20,17 +20,18 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl} fro
 })
 export class ImageSelectListComponent implements ControlValueAccessor {
 
-  @Input() items: string[] = [];
-  @Input() cols = 6;
+  @Input() items: string[] = []; // The paths to get resources.
+  @Input() cols = 6; // How many items do we have in one row.
   @Input() rowHeight = '64px';
   @Input() title = 'Select';
-  @Input() useSvgIcon = true;
+  @Input() useSvgIcon = true; // Whether to use svg or img.
   @Input() itemWidth = '80px';
   selectedItem: string;
   private propagateChange = (_: any) => {
   };
 
   constructor() {
+    console.log(this.items);
   }
 
   onSelectImage(i) {
