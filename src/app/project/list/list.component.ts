@@ -15,7 +15,23 @@ import 'rxjs-compat/add/operator/switchMap';
 
 @Component({
   selector: 'app-list',
-  templateUrl: './list.component.html',
+  template: `
+    <div class="project-list-container" [@projectListAnimation]='projects?.length'>
+      <app-item
+        *ngFor="let project of projects"
+        [item]="project" class="card"
+        (inviteEvent)="inviteNewMember()"
+        (editEvent)="editProject(project)"
+        (deleteProjectEvent)="deleteProjectConfirm(project)"
+      >
+
+      </app-item>
+    </div>
+
+    <button class="fab-button" mat-fab type="button" (click)="openNewProject()">
+      <mat-icon>add</mat-icon>
+    </button>
+  `,
   styleUrls: ['./list.component.scss'],
   animations: [
     routeanimation,
@@ -68,7 +84,7 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   inviteNewMember() {
-    this.dialog.open(InviteComponent);
+    this.dialog.open(InviteComponent, {data: {members: [ ]}});
   }
 
   editProject(project) {

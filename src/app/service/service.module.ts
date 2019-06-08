@@ -4,9 +4,9 @@ import {QuoteService} from './quote.service';
 import {ProjectService} from './project.service';
 import {TaskListService} from './taskList.service';
 import {TaskService} from './task.service';
+import {UserService} from './user.service';
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule
   ],
@@ -14,7 +14,8 @@ import {TaskService} from './task.service';
     QuoteService,
     ProjectService,
     TaskListService,
-    TaskService
+    TaskService,
+    UserService
   ]
 })
 export class ServiceModule {
