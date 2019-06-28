@@ -21,13 +21,17 @@ import {DirectiveModule} from '../directive/directive.module';
 import {ImageSelectListComponent} from './image-select-list/image-select-list.component';
 import {AgeInputComponent} from './age-input/age-input.component';
 import {ChipsListComponent} from './chips-list/chips-list.component';
+import { IdentityInputComponent } from './identity-input/identity-input.component';
+import { AreaInputComponent } from './area-input/area-input.component';
 
 @NgModule({
   declarations: [
     ConfirmDialogComponent,
     ImageSelectListComponent,
     AgeInputComponent,
-    ChipsListComponent
+    ChipsListComponent,
+    IdentityInputComponent,
+    AreaInputComponent
   ],
   imports: [
     CommonModule,

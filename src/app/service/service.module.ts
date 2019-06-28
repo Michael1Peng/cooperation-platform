@@ -16,7 +16,8 @@ import {UserService} from './user.service';
     TaskListService,
     TaskService,
     UserService
-  ]
+  ],
+  declarations: []
 })
 export class ServiceModule {
 }
