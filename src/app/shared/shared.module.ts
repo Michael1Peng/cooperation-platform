@@ -16,13 +16,13 @@ import {
   MatButtonToggleModule, MatChipsModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component';
+import {ConfirmDialogComponent} from './confirm-dialog.component';
 import {DirectiveModule} from '../directive/directive.module';
-import {ImageSelectListComponent} from './image-select-list/image-select-list.component';
-import {AgeInputComponent} from './age-input/age-input.component';
-import {ChipsListComponent} from './chips-list/chips-list.component';
-import { IdentityInputComponent } from './identity-input/identity-input.component';
-import { AreaInputComponent } from './area-input/area-input.component';
+import {ImageSelectListComponent} from './image-select-list.component';
+import {AgeInputComponent} from './age-input.component';
+import {ChipsListComponent} from './chips-list.component';
+import { IdentityInputComponent } from './identity-input.component';
+import { AreaInputComponent } from './area-input.component';
 
 @NgModule({
   declarations: [

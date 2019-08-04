@@ -1,11 +1,11 @@
 import {Component, OnInit, HostBinding, ChangeDetectorRef, OnDestroy} from '@angular/core';
-import {NewProjectComponent} from '../new-project/new-project.component';
-import {InviteComponent} from '../invite/invite.component';
+import {NewProjectComponent} from './new-project.component';
+import {InviteComponent} from './invite.component';
 import {MatDialog} from '@angular/material';
-import {ConfirmDialogComponent} from '../../shared/confirm-dialog/confirm-dialog.component';
-import {routeanimation} from '../../animations/route.animations';
-import {projectListAnimation} from '../../animations/projectList.animations';
-import {ProjectService} from '../../service/project.service';
+import {ConfirmDialogComponent} from '../shared/confirm-dialog.component';
+import {routeanimation} from '../animations/route.animations';
+import {projectListAnimation} from '../animations/projectList.animations';
+import {ProjectService} from '../service/project.service';
 import {Observable, range, Subscription} from 'rxjs';
 import {map, reduce} from 'rxjs/operators';
 import 'rxjs-compat/add/operator/take';
@@ -32,7 +32,7 @@ import 'rxjs-compat/add/operator/switchMap';
       <mat-icon>add</mat-icon>
     </button>
   `,
-  styleUrls: ['./list.component.scss'],
+  styles: [``],
   animations: [
     routeanimation,
     projectListAnimation

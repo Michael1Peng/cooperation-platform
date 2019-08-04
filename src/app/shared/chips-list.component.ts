@@ -1,35 +1,43 @@
 import {ChangeDetectionStrategy, Component, OnInit, forwardRef, Input, ViewChild} from '@angular/core';
-import {ControlValueAccessor, FormBuilder, FormGroup, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {
+  ControlValueAccessor,
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR
+} from '@angular/forms';
 import {MatAutocomplete} from '@angular/material';
 import {Observable} from 'rxjs';
-import {UserService} from '../../service/user.service';
-import {User} from '../../domain';
+import {UserService} from '../service/user.service';
+import {User} from '../domain';
 import {startWith, debounceTime, distinctUntilChanged, filter, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-chips-list',
   template: `
-    <div [formGroup]="chips" class="full-width">
-      <span>{{ label }}</span>
-      <mat-chip-list>
-        <mat-chip color="primary" selected="true" *ngFor="let member of items">
-          {{ member.name }} <span (click)="removeMember(member)" class="remove-tag">x</span>
-        </mat-chip>
-      </mat-chip-list>
-      <mat-form-field *ngIf="displayInput" class="full-width">
-        <input matInput [placeholder]="placeholderText" [matAutocomplete]="autoMember" formControlName="memberSearch">
-      </mat-form-field>
-    </div>
-    <mat-autocomplete #autoMember="matAutocomplete" [displayWith]="displayUser">
-      <mat-option
-        *ngFor="let item of memberResults$ | async"
-        [value]="item"
-        (onSelectionChange)="handleMemberSelection(item)">
-        {{ item.name }}
-      </mat-option>
-    </mat-autocomplete>
+      <div [formGroup]="chips" class="full-width">
+          <span>{{ label }}</span>
+          <mat-chip-list>
+              <mat-chip color="primary" selected="true" *ngFor="let member of items">
+                  {{ member.name }} <span (click)="removeMember(member)" class="remove-tag">x</span>
+              </mat-chip>
+          </mat-chip-list>
+          <mat-form-field *ngIf="displayInput" class="full-width">
+              <input matInput [placeholder]="placeholderText" [matAutocomplete]="autoMember"
+                     formControlName="memberSearch">
+          </mat-form-field>
+      </div>
+      <mat-autocomplete #autoMember="matAutocomplete" [displayWith]="displayUser">
+          <mat-option
+                  *ngFor="let item of memberResults$ | async"
+                  [value]="item"
+                  (onSelectionChange)="handleMemberSelection(item)">
+              {{ item.name }}
+          </mat-option>
+      </mat-autocomplete>
   `,
-  styleUrls: ['./chips-list.component.scss'],
+  styles: [``],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

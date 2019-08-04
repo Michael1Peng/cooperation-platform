@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit, forwardRef, Input, ViewChild, OnDestroy} from '@angular/core';
 import {ControlValueAccessor, FormBuilder, FormGroup, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {combineLatest, Observable, Subject} from 'rxjs';
-import {Address} from '../../domain';
+import {Address} from '../domain';
 import {map, startWith} from 'rxjs/operators';
 
 @Component({

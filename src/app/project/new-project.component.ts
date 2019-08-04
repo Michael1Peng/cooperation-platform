@@ -5,8 +5,32 @@ import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-new-project',
-  templateUrl: './new-project.component.html',
-  styleUrls: ['./new-project.component.scss']
+  template: `
+      <form [formGroup]="form" (ngSubmit)="onSubmit(form, $event)">
+          <h2 mat-dialog-title>{{title}}</h2>
+          <mat-dialog-content>
+              <mat-form-field color="accent" class="full-width">
+                  <input matInput type="text" placeholder="Project Name" formControlName="name">
+              </mat-form-field>
+              <mat-form-field color="accent" class="full-width">
+                  <input matInput type="text" placeholder="Project Description" formControlName="desc">
+              </mat-form-field>
+              <app-image-select-list
+                      [useSvgIcon]="false"
+                      [cols]="6"
+                      [title]="'Choose your cover: '"
+                      [items]="thumbnails$ | async"
+                      formControlName="coverImg"
+              >
+              </app-image-select-list>
+          </mat-dialog-content>
+          <mat-dialog-actions>
+              <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid">Save</button>
+              <button mat-button mat-dialog-close type="button">Close</button>
+          </mat-dialog-actions>
+      </form>
+  `,
+  styles: [``]
 })
 export class NewProjectComponent implements OnInit {
 

@@ -2,7 +2,7 @@ import {Component, HostBinding, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {NewTaskComponent} from '../new-task/new-task.component';
 import {CopyTaskComponent} from '../copy-task/copy-task.component';
-import {ConfirmDialogComponent} from '../../shared/confirm-dialog/confirm-dialog.component';
+import {ConfirmDialogComponent} from '../../shared/confirm-dialog.component';
 import {NewListComponent} from '../new-list/new-list.component';
 import {routeanimation} from '../../animations/route.animations';
 

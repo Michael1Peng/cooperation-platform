@@ -8,7 +8,7 @@ export class DragDirective {
 
   @Input() draggedClass: string;
   @Input() dragTag: string;
-  @Input() dragData: any ;
+  @Input() dragData: any;
 
   private isDraggable = false;
 

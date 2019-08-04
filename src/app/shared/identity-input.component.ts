@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component, OnInit, forwardRef, Input, ViewChild, OnDestroy} from '@angular/core';
 import {ControlValueAccessor, FormBuilder, FormGroup, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Observable, Subject, Subscription} from 'rxjs';
-import {Identity, IdentityType} from '../../domain';
-import {isValidDate} from '../../utils/date.util';
+import {Identity, IdentityType} from '../domain';
+import {isValidDate} from '../utils/date.util';
 import {combineLatest} from 'rxjs';
 import {map} from 'rxjs/operators';
 

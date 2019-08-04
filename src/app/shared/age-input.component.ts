@@ -1,5 +1,12 @@
 import {Component, Input, forwardRef, OnInit, OnDestroy} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl, FormBuilder, FormGroup} from '@angular/forms';
+import {
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+  NG_VALIDATORS,
+  FormControl,
+  FormBuilder,
+  FormGroup
+} from '@angular/forms';
 import {filter, map, debounceTime, distinctUntilChanged, startWith} from 'rxjs/operators';
 import {combineLatest, Observable, merge, Subscription} from 'rxjs';
 import {
@@ -13,7 +20,7 @@ import {
   parse, format,
   isDate, isValid, isFuture
 } from 'date-fns';
-import {isValidDate} from '../../utils/date.util';
+import {isValidDate} from '../utils/date.util';
 
 export enum AgeUnit {
   Year = 0,
@@ -28,8 +35,47 @@ export interface Age {
 
 @Component({
   selector: 'app-age-input',
-  templateUrl: './age-input.component.html',
-  styleUrls: ['./age-input.component.scss'],
+  template: `
+      <div [formGroup]="form" class="age-input">
+          <div>
+              <mat-form-field>
+                  <input type="text" matInput formControlName="birthday" [matDatepicker]="birthdayPicker"
+                         placeholder="birthday">
+                  <mat-datepicker-toggle matSuffix [for]="birthdayPicker"></mat-datepicker-toggle>
+                  <mat-error>incorrect date</mat-error>
+              </mat-form-field>
+              <mat-datepicker touchUi="true" #birthdayPicker></mat-datepicker>
+          </div>
+          <ng-container formGroupName="age">
+              <div class="age-num">
+                  <mat-form-field>
+                      <input type="number" placeholder="age" matInput formControlName="ageNumber">
+                  </mat-form-field>
+              </div>
+              <div>
+                  <mat-button-toggle-group formControlName="ageUnit" [(ngModel)]="selectedUnit">
+                      <mat-button-toggle *ngFor="let unit of ageUnits" [value]="unit?.value">
+                          {{unit.label}}
+                      </mat-button-toggle>
+                  </mat-button-toggle-group>
+              </div>
+              <mat-error *ngIf="form.get('age').hasError('ageInvalid')">incorrect age or unit</mat-error>
+          </ng-container>
+      </div>
+  `,
+  styles: [`
+      .age-num {
+      / / width: 50 px;
+      }
+
+      .age-input {
+          display: flex;
+          flex-wrap: nowrap;
+          flex-direction: row;
+          align-items: baseline;
+      }
+
+  `],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
