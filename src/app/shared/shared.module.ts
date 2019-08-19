@@ -21,8 +21,8 @@ import {DirectiveModule} from '../directive/directive.module';
 import {ImageSelectListComponent} from './image-select-list.component';
 import {AgeInputComponent} from './age-input.component';
 import {ChipsListComponent} from './chips-list.component';
-import { IdentityInputComponent } from './identity-input.component';
-import { AreaInputComponent } from './area-input.component';
+import {IdentityInputComponent} from './identity-input.component';
+import {AreaInputComponent} from './area-input.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +85,9 @@ import { AreaInputComponent } from './area-input.component';
     MatButtonToggleModule,
     AgeInputComponent,
     ChipsListComponent,
-    MatChipsModule
+    MatChipsModule,
+    IdentityInputComponent,
+    AreaInputComponent
   ]
 })
 export class SharedModule {

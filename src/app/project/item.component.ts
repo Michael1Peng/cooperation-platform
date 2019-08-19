@@ -1,6 +1,11 @@
 import {Component, OnInit, Input, Output, EventEmitter, HostBinding, HostListener} from '@angular/core';
 import {cardanimation} from '../animations/card.animations';
 
+/**
+ * show the information of each project,
+ * and offer accesses to operate them.
+ * */
+
 @Component({
   selector: 'app-item',
   template: `

@@ -1,77 +1,86 @@
 import {ChangeDetectionStrategy, Component, OnInit, forwardRef, Input, ViewChild, OnDestroy} from '@angular/core';
-import {ControlValueAccessor, FormBuilder, FormGroup, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {combineLatest, Observable, Subject} from 'rxjs';
+import {
+  ControlValueAccessor,
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR
+} from '@angular/forms';
+import {combineLatest, Observable, Subject, Subscription} from 'rxjs';
 import {Address} from '../domain';
 import {map, startWith} from 'rxjs/operators';
+import 'rxjs-compat/add/observable/of';
+import {getProvinces, getCities, getDistricts} from '../utils/area.util';
 
 @Component({
   selector: 'app-area-input',
   template: `
-    <div class="address-group">
-      <div>
-        <mat-form-field>
-          <mat-select
-            placeholder="Please select province"
-            [(ngModel)]="_address.province"
-            (change)="onProvinceChange()"
-          >
-            <mat-option *ngFor="let p of provinces" [value]="p">
-              {{ p }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+      <div class="address-group">
+          <div>
+              <mat-form-field>
+                  <mat-select
+                          placeholder="Please select province"
+                          [(ngModel)]="_address.province"
+                          (change)="onProvinceChange()"
+                  >
+                      <mat-option *ngFor="let p of provinces" [value]="p">
+                          {{ p }}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+          </div>
+          <div>
+              <mat-form-field>
+                  <mat-select
+                          placeholder="Please select city"
+                          [(ngModel)]="_address.city"
+                          (change)="onCityChange()"
+                  >
+                      <mat-option *ngFor="let c of (cities$ | async)" [value]="c">
+                          {{ c }}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+          </div>
+          <div>
+              <mat-form-field>
+                  <mat-select
+                          placeholder="Please select district"
+                          [(ngModel)]="_address.district"
+                          (change)="onDistrictChange()"
+                  >
+                      <mat-option *ngFor="let d of (districts$ | async)" [value]="d">
+                          {{ d }}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+          </div>
+          <div class="street">
+              <mat-form-field class="full-width">
+                  <input
+                          matInput
+                          placeholder="street"
+                          [(ngModel)]="_address.street"
+                          (change)="onStreetChange()"
+                  />
+              </mat-form-field>
+          </div>
       </div>
-      <div>
-        <mat-form-field>
-          <mat-select
-            placeholder="Please select city"
-            [(ngModel)]="_address.city"
-            (change)="onCityChange()"
-          >
-            <mat-option *ngFor="let c of (cities$ | async)" [value]="c">
-              {{ c }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field>
-          <mat-select
-            placeholder="Please select district"
-            [(ngModel)]="_address.district"
-            (change)="onDistrictChange()"
-          >
-            <mat-option *ngFor="let d of (districts$ | async)" [value]="d">
-              {{ d }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="street">
-        <mat-form-field class="full-width">
-          <input
-            matInput
-            placeholder="street"
-            [(ngModel)]="_address.street"
-            (change)="onStreetChange()"
-          />
-        </mat-form-field>
-      </div>
-    </div>
   `,
   styles: [
       `
-      .street {
-        flex: 1 1 100%;
-      }
+          .street {
+              flex: 1 1 100%;
+          }
 
-      .address-group {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: space-between;
-      }
+          .address-group {
+              width: 100%;
+              display: flex;
+              flex-wrap: wrap;
+              flex-direction: row;
+              justify-content: space-between;
+          }
     `
   ],
   providers: [
@@ -100,23 +109,46 @@ export class AreaInputComponent implements OnInit, OnDestroy {
   _city = new Subject<string>();
   _district = new Subject<string>();
   _street = new Subject<string>();
+  sub: Subscription;
+  provinces$: Observable<string[]>;
+  cities$: Observable<string[]>;
+  districts$: Observable<string[]>;
 
   constructor() {
   }
 
   ngOnInit() {
+    // get the data from form
     const province$ = this._province.asObservable().pipe(startWith(''));
     const city$ = this._city.asObservable().pipe(startWith(''));
     const district$ = this._district.asObservable().pipe(startWith(''));
     const street$ = this._street.asObservable().pipe(startWith(''));
     const val$ = combineLatest([province$, city$, district$, street$]).pipe(
       map(([_p, _c, _d, _s]) => {
-
+        return {
+          province: _p,
+          city: _c,
+          district: _d,
+          street: _s
+        };
       })
+    );
+    this.sub = val$.subscribe(v => this.propagateChange(v));
+
+    // update the data
+    this.provinces$ = Observable.of(getProvinces());
+    this.cities$ = province$.pipe(
+      map((p: string) => getCities(p))
+    );
+    this.districts$ = combineLatest(province$, city$).pipe(
+      map(([p, c]) => getDistricts(p, c))
     );
   }
 
   ngOnDestroy(): void {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
   // -------------------------------表单相关的函数---------------------------- //
@@ -130,6 +162,20 @@ export class AreaInputComponent implements OnInit, OnDestroy {
   // 设置初始值
   public writeValue(obj: Address) {
     this._address = obj ? obj : null;
+
+    // if we have initial value, send it out.
+    if (this._address.province) {
+      this._province.next(this._address.province);
+    }
+    if (this._address.city) {
+      this._city.next(this._address.city);
+    }
+    if (this._address.district) {
+      this._district.next(this._address.district);
+    }
+    if (this._address.street) {
+      this._street.next(this._address.street);
+    }
   }
 
   public registerOnChange(fn: any): void {

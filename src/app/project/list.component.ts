@@ -13,26 +13,50 @@ import 'rxjs-compat/add/operator/filter';
 import 'rxjs-compat/add/operator/map';
 import 'rxjs-compat/add/operator/switchMap';
 
+/**
+ * display the list of projects.
+ * */
+
 @Component({
   selector: 'app-list',
   template: `
-    <div class="project-list-container" [@projectListAnimation]='projects?.length'>
-      <app-item
-        *ngFor="let project of projects"
-        [item]="project" class="card"
-        (inviteEvent)="inviteNewMember()"
-        (editEvent)="editProject(project)"
-        (deleteProjectEvent)="deleteProjectConfirm(project)"
-      >
+      <div class="project-list-container" [@projectListAnimation]='projects?.length'>
+          <app-item
+                  *ngFor="let project of projects"
+                  [item]="project" class="card"
+                  (inviteEvent)="inviteNewMember()"
+                  (editEvent)="editProject(project)"
+                  (deleteProjectEvent)="deleteProjectConfirm(project)"
+          >
 
-      </app-item>
-    </div>
+          </app-item>
+      </div>
 
-    <button class="fab-button" mat-fab type="button" (click)="openNewProject()">
-      <mat-icon>add</mat-icon>
-    </button>
+      <button class="fab-button" mat-fab type="button" (click)="openNewProject()">
+          <mat-icon>add</mat-icon>
+      </button>
   `,
-  styles: [``],
+  styles: [`
+      .card {
+          height: 360px;
+          flex: 0 0 360px;
+          margin: 10px;
+          display: flex;
+      }
+
+      .project-list-container {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+      }
+
+      .fab-button {
+          position: fixed;
+          right: 32px;
+          bottom: 96px;
+          z-index: 998;
+      }
+  `],
   animations: [
     routeanimation,
     projectListAnimation
@@ -84,7 +108,7 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   inviteNewMember() {
-    this.dialog.open(InviteComponent, {data: {members: [ ]}});
+    this.dialog.open(InviteComponent, {data: {members: []}});
   }
 
   editProject(project) {
