@@ -13,7 +13,8 @@ import {
   MatDatepickerModule, MatDialogModule,
   MatNativeDateModule, MatSelectModule,
   MatSidenavModule,
-  MatButtonToggleModule, MatChipsModule
+  MatButtonToggleModule, MatChipsModule,
+  MatTabsModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ConfirmDialogComponent} from './confirm-dialog.component';
@@ -57,6 +58,7 @@ import {AreaInputComponent} from './area-input.component';
     ReactiveFormsModule,
     MatButtonToggleModule,
     MatChipsModule,
+    MatTabsModule
   ],
   entryComponents: [ConfirmDialogComponent],
   exports: [
@@ -87,7 +89,8 @@ import {AreaInputComponent} from './area-input.component';
     ChipsListComponent,
     MatChipsModule,
     IdentityInputComponent,
-    AreaInputComponent
+    AreaInputComponent,
+    MatTabsModule
   ]
 })
 export class SharedModule {

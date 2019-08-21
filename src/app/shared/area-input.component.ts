@@ -13,6 +13,11 @@ import {map, startWith} from 'rxjs/operators';
 import 'rxjs-compat/add/observable/of';
 import {getProvinces, getCities, getDistricts} from '../utils/area.util';
 
+/**
+ * @description This component is used to select location, solving interrelated problem among provinces, cities and district.
+ * @input obj from writeValue, the initial value of the location
+ * */
+
 @Component({
   selector: 'app-area-input',
   template: `
@@ -22,7 +27,7 @@ import {getProvinces, getCities, getDistricts} from '../utils/area.util';
                   <mat-select
                           placeholder="Please select province"
                           [(ngModel)]="_address.province"
-                          (change)="onProvinceChange()"
+                          (selectionChange)="onProvinceChange()"
                   >
                       <mat-option *ngFor="let p of provinces" [value]="p">
                           {{ p }}
@@ -35,7 +40,7 @@ import {getProvinces, getCities, getDistricts} from '../utils/area.util';
                   <mat-select
                           placeholder="Please select city"
                           [(ngModel)]="_address.city"
-                          (change)="onCityChange()"
+                          (selectionChange)="onCityChange()"
                   >
                       <mat-option *ngFor="let c of (cities$ | async)" [value]="c">
                           {{ c }}
@@ -48,7 +53,7 @@ import {getProvinces, getCities, getDistricts} from '../utils/area.util';
                   <mat-select
                           placeholder="Please select district"
                           [(ngModel)]="_address.district"
-                          (change)="onDistrictChange()"
+                          (selectionChange)="onDistrictChange()"
                   >
                       <mat-option *ngFor="let d of (districts$ | async)" [value]="d">
                           {{ d }}
@@ -98,7 +103,9 @@ import {getProvinces, getCities, getDistricts} from '../utils/area.util';
 })
 export class AreaInputComponent implements OnInit, OnDestroy {
 
-  // ----------------------------------组件数据------------------------------- //
+  /**
+   * @description data of the component
+   */
   _address: Address = {
     province: '',
     city: '',
@@ -110,7 +117,7 @@ export class AreaInputComponent implements OnInit, OnDestroy {
   _district = new Subject<string>();
   _street = new Subject<string>();
   sub: Subscription;
-  provinces$: Observable<string[]>;
+  provinces: string[] = getProvinces();
   cities$: Observable<string[]>;
   districts$: Observable<string[]>;
 
@@ -136,7 +143,6 @@ export class AreaInputComponent implements OnInit, OnDestroy {
     this.sub = val$.subscribe(v => this.propagateChange(v));
 
     // update the data
-    this.provinces$ = Observable.of(getProvinces());
     this.cities$ = province$.pipe(
       map((p: string) => getCities(p))
     );
@@ -161,20 +167,20 @@ export class AreaInputComponent implements OnInit, OnDestroy {
 
   // 设置初始值
   public writeValue(obj: Address) {
-    this._address = obj ? obj : null;
-
-    // if we have initial value, send it out.
-    if (this._address.province) {
-      this._province.next(this._address.province);
-    }
-    if (this._address.city) {
-      this._city.next(this._address.city);
-    }
-    if (this._address.district) {
-      this._district.next(this._address.district);
-    }
-    if (this._address.street) {
-      this._street.next(this._address.street);
+    if (obj) {
+      // if we have initial value, send it out.
+      if (this._address.province) {
+        this._province.next(this._address.province);
+      }
+      if (this._address.city) {
+        this._city.next(this._address.city);
+      }
+      if (this._address.district) {
+        this._district.next(this._address.district);
+      }
+      if (this._address.street) {
+        this._street.next(this._address.street);
+      }
     }
   }
 
@@ -218,6 +224,7 @@ export class AreaInputComponent implements OnInit, OnDestroy {
   }
 
   onStreetChange() {
+    debugger;
     this._street.next(this._address.street);
   }
 

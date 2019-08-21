@@ -1,6 +1,13 @@
 import {Component, Input, forwardRef} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl} from '@angular/forms';
 
+/**
+ * @description this component is to offer an user interface to select image or avatar.
+ * @param items the list of urls of images
+ * @param title the title of component
+ * @param useSvgIcon to decide whether to select image or avatar
+ */
+
 @Component({
   selector: 'app-image-select-list',
   template: `
