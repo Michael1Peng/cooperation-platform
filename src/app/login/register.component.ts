@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {Subscription} from 'rxjs';
+import {debounceTime, filter} from 'rxjs/operators';
 
 /**
  * @description the registration page
@@ -87,14 +89,15 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 
   `]
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
+  items: string[];
+  sub: Subscription;
 
   constructor(private formBuilder: FormBuilder) {
   }
 
-  items: string[];
 
   ngOnInit() {
     const nums = [];
@@ -114,5 +117,23 @@ export class RegisterComponent implements OnInit {
       identityInput: [],
       avatar: [img]
     });
+
+    /**
+     * connect the identityInput to areaInput and ageInput, when we change the identity and it's valid,
+     * it will change the areaInput and ageInput correspondingly.
+     */
+    const id$ = this.form.get('identityInput').valueChanges.pipe(
+      debounceTime(3000),
+      filter(_ => this.form.get('identityInput').valid)
+    );
+    this.sub = id$.subscribe(id => {
+      const info = ;
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 }
