@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {debounceTime, filter} from 'rxjs/operators';
+import {extractIdNoInfo, isValidAddr, getAddrByCode, getBirthdayByCode} from '../utils/identity.util';
 
 /**
  * @description the registration page
@@ -123,11 +124,18 @@ export class RegisterComponent implements OnInit, OnDestroy {
      * it will change the areaInput and ageInput correspondingly.
      */
     const id$ = this.form.get('identityInput').valueChanges.pipe(
-      debounceTime(3000),
-      filter(_ => this.form.get('identityInput').valid)
+      // debounceTime(3000),
+      // filter(_ => this.form.get('identityInput').valid)
     );
     this.sub = id$.subscribe(id => {
-      const info = ;
+      const info = extractIdNoInfo(id.identityNo);              // extract information about address, birthday and gender from id number.
+      const birthday = getBirthdayByCode(info.birthdayCode);
+      debugger;
+      if (isValidAddr(id.addrCode)) {
+        const addr = getAddrByCode(id.addrCode);
+        this.form.patchValue({areaInput: addr});
+        this.form.updateValueAndValidity({ onlySelf: true, emitEvent: true });
+      }
     });
   }
 
