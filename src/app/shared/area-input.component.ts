@@ -185,6 +185,7 @@ export class AreaInputComponent implements OnInit, OnDestroy {
   }
 
   public registerOnChange(fn: any): void {
+    this.propagateChange = fn;
   }
 
   public registerOnTouched(fn: any): void {
@@ -224,7 +225,6 @@ export class AreaInputComponent implements OnInit, OnDestroy {
   }
 
   onStreetChange() {
-    debugger;
     this._street.next(this._address.street);
   }
 

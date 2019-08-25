@@ -1,6 +1,11 @@
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 
+/**
+ * @description this function is to load the added svg resources
+ * @param ir a component to register svg icon to corresponding name
+ * @param ds a component to generate url
+ */
 export const loadSvgResources = (ir: MatIconRegistry, ds: DomSanitizer) => {
   const imgDir = 'assets/img';
   const sidebarDir = `${imgDir}/sidebar`;

@@ -9,44 +9,44 @@ import {map} from 'rxjs/operators';
 @Component({
   selector: 'app-identity-input',
   template: `
-    <div>
-      <mat-form-field>
-        <mat-select
-          placeholder="证件类型"
-          (change)="onIdTypeChange($event.value)"
-          [(ngModel)]="identity.identityType"
-        >
-          <mat-option *ngFor="let type of identityTypes" [value]="type.value">
-            {{ type.label }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="id-input">
-      <mat-form-field class="full-width">
-        <input
-          matInput
-          type="text"
-          placeholder="证件号码"
-          (change)="onIdNoChange($event.target.value)"
-          [(ngModel)]="identity.identityNo"
-        />
-        <mat-error>证件号码输入有误</mat-error>
-      </mat-form-field>
-    </div>
+      <div>
+          <mat-form-field>
+              <mat-select
+                      placeholder="证件类型"
+                      (selectionChange)="onIdTypeChange($event.value)"
+                      [(ngModel)]="identity.identityType"
+              >
+                  <mat-option *ngFor="let type of identityTypes" [value]="type.value">
+                      {{ type.label }}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field>
+      </div>
+      <div class="id-input">
+          <mat-form-field class="full-width">
+              <input
+                      matInput
+                      type="text"
+                      placeholder="证件号码"
+                      (change)="onIdNoChange($event.target.value)"
+                      [(ngModel)]="identity.identityNo"
+              />
+              <mat-error>证件号码输入有误</mat-error>
+          </mat-form-field>
+      </div>
   `,
   styles: [
       `
-      .id-input {
-        flex: 1;
-      }
+          .id-input {
+              flex: 1;
+          }
 
-      :host {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: baseline;
-      }
+          :host {
+              display: flex;
+              flex-direction: row;
+              flex-wrap: nowrap;
+              align-items: baseline;
+          }
     `
   ],
   providers: [
@@ -118,6 +118,7 @@ export class IdentityInputComponent implements OnInit, OnDestroy {
   }
 
   public registerOnChange(fn: any): void {
+    this.propagateChange = fn;
   }
 
   public registerOnTouched(fn: any): void {
@@ -198,11 +199,11 @@ export class IdentityInputComponent implements OnInit, OnDestroy {
   }
 
   private get idType(): Observable<IdentityType> {
-    return this._selectedIdType;
+    return this._selectedIdType.asObservable();
   }
 
   private get idNum(): Observable<string> {
-    return this._IdNum;
+    return this._IdNum.asObservable();
   }
 
 }

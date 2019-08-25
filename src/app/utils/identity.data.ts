@@ -1,3 +1,4 @@
+/* tslint:disable:object-literal-key-quotes */
 // tslint:disable-next-line:max-line-length
 export const GB2260: { [id: string]: string } = {
   '110000': '北京市',
