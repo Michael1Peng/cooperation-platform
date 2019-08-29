@@ -3,6 +3,7 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {debounceTime, filter} from 'rxjs/operators';
 import {extractIdNoInfo, isValidAddr, getAddrByCode, getBirthdayByCode} from '../utils/identity.util';
+import {isValidDate} from '../utils/date.util';
 
 /**
  * @description the registration page
@@ -129,11 +130,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
     );
     this.sub = id$.subscribe(id => {
       const info = extractIdNoInfo(id.identityNo);              // extract information about address, birthday and gender from id number.
-      const birthday = getBirthdayByCode(info.birthdayCode);
-      debugger;
-      if (isValidAddr(id.addrCode)) {
-        const addr = getAddrByCode(id.addrCode);
+      if (isValidAddr(info.addrCode)) {
+        const addr = getAddrByCode(info.addrCode);
         this.form.patchValue({areaInput: addr});
+        this.form.updateValueAndValidity({ onlySelf: true, emitEvent: true });
+      }
+      if (isValidDate(info.birthdayCode)) {
+        debugger;
+        const birthday = getBirthdayByCode(info.birthdayCode);
+        this.form.patchValue({ageInput: birthday});
         this.form.updateValueAndValidity({ onlySelf: true, emitEvent: true });
       }
     });

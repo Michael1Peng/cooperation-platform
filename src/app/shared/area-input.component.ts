@@ -168,6 +168,7 @@ export class AreaInputComponent implements OnInit, OnDestroy {
   // 设置初始值
   public writeValue(obj: Address) {
     if (obj) {
+      this._address = obj;
       // if we have initial value, send it out.
       if (this._address.province) {
         this._province.next(this._address.province);
