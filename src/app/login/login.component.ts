@@ -2,6 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, Validators, FormControl, FormBuilder} from '@angular/forms';
 import {QuoteService} from '../service/quote.service';
 import {Quote} from '../domain';
+import {Observable, Subscription} from 'rxjs';
+import * as actions from '../actions/quote.action';
+import * as fromRoot from '../reducers';
+import {Store, select} from '@ngrx/store';
+
+/**
+ * @description Login page, we will show some images and sentences as decoration.
+ */
 
 @Component({
   selector: 'app-login',
@@ -30,9 +38,9 @@ import {Quote} from '../domain';
               <mat-card-subtitle>
                   --April 14
               </mat-card-subtitle>
-              <img mat-card-image [src]="quote.pic">
+              <img mat-card-image [src]="(quote$|async).pic">
               <mat-card-content>
-                  {{quote.cn}}
+                  {{(quote$ | async).cn}}
               </mat-card-content>
           </mat-card>
       </form>
@@ -61,18 +69,19 @@ import {Quote} from '../domain';
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
-  quote: Quote = {
-    id: 1,
-    cn: 'Being defeated is often a temporary condition. Giving up is what makes it permanent.',
-    pic: '/assets/img/quotes/1.jpg'
-  };
+  quote$: Observable<Quote>;
 
   constructor(
     private formBuilder: FormBuilder,
-    private quoteService$: QuoteService) {
-    this.quoteService$
-      .getQuotes()
-      .subscribe(q => this.quote = q[0]);
+    private quoteService$: QuoteService,
+    private store$: Store<fromRoot.State>) {
+    this.quote$ = this.store$.pipe(select(fromRoot.getQuoteState));
+
+    // subscribe and dispatch the latest quote
+    quoteService$.getQuotes().subscribe(q => {
+      debugger;
+      this.store$.dispatch(new actions.QuoteSuccessAction(q[0]));
+    });
   }
 
   ngOnInit() {
@@ -80,6 +89,7 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.compose([Validators.required, this.emailValidate])],
       password: ['', Validators.required]
     });
+    this.store$.dispatch(new actions.QuoteAction());
   }
 
   onSubmit({value, valid}, event: Event) {
