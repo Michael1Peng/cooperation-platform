@@ -7,7 +7,6 @@ export const initialState: Quote = {
 };
 
 export function reducer(state: Quote = initialState, action: actions.Actions): Quote {
-  debugger;
   switch (action.type) {
     case actions.QUOTE_SUCCESS:
       return {...action.payload};

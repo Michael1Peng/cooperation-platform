@@ -76,12 +76,6 @@ export class LoginComponent implements OnInit {
     private quoteService$: QuoteService,
     private store$: Store<fromRoot.State>) {
     this.quote$ = this.store$.pipe(select(fromRoot.getQuoteState));
-
-    // subscribe and dispatch the latest quote
-    quoteService$.getQuotes().subscribe(q => {
-      debugger;
-      this.store$.dispatch(new actions.QuoteSuccessAction(q[0]));
-    });
   }
 
   ngOnInit() {

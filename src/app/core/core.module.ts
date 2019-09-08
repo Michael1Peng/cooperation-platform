@@ -12,6 +12,7 @@ import {loadSvgResources} from '../utils/svg.util';
 
 import 'hammerjs';
 import {AppStoreModule} from '../reducers';
+import {APPEffectsModule} from '../effects';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {AppStoreModule} from '../reducers';
     BrowserAnimationsModule,
     SharedModule,
     AppRoutingModule,
-    AppStoreModule
+    AppStoreModule,
+    APPEffectsModule
   ],
   providers: [
     {
